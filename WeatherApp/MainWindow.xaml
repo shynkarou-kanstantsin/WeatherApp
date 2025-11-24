@@ -52,10 +52,12 @@
                 </Grid.RowDefinitions>
 
                 <Grid Grid.Row="0">
-                    <TextBlock Text="Pinned cities" FontSize="20" HorizontalAlignment="Center" Margin="0,5,0,0"/>
+                    <Rectangle Fill="#b0dceb"/>
+                    <TextBlock Text="Pinned cities:" FontSize="20" HorizontalAlignment="Center" Margin="0,5,0,0"/>
                 </Grid>
 
                 <Grid Grid.Row="1">
+                    <Rectangle Fill="#b0dceb"/>
                     <ScrollViewer VerticalScrollBarVisibility="Auto">
                         <ItemsControl ItemsSource="{Binding PinnedCities}">
                             <ItemsControl.ItemTemplate>
@@ -73,11 +75,16 @@
 
             <Grid Grid.Column="1" Grid.Row="1">
                 <Grid.RowDefinitions>
-                    <RowDefinition Height="20*"></RowDefinition>
-                    <RowDefinition Height="80*"></RowDefinition>
+                    <RowDefinition Height="10*"></RowDefinition>
+                    <RowDefinition Height="10*"></RowDefinition>
+                    <RowDefinition Height="75*"></RowDefinition>
                 </Grid.RowDefinitions>
 
                 <Grid Grid.Row="0">
+                    <Label Content="City" HorizontalAlignment="Center" VerticalAlignment="Bottom" FontSize="20" Margin="0,0,0,5"/>
+                </Grid>
+                
+                <Grid Grid.Row="1">
                     <Grid.ColumnDefinitions>
                         <ColumnDefinition Width="75*"></ColumnDefinition>
                         <ColumnDefinition Width="25*"></ColumnDefinition>
@@ -85,7 +92,7 @@
 
                     <Grid Grid.Column="0">
                         <TextBox Text="{Binding SearchQuery, UpdateSourceTrigger=PropertyChanged}" 
-                                 FontSize="20" Foreground="#130b61" Height="40" Width="300" HorizontalAlignment="Right" Margin="0,0,10,0"/>
+                                 FontSize="20" Foreground="#130b61" Height="40" Width="300" HorizontalAlignment="Right" HorizontalContentAlignment="Left" VerticalContentAlignment="Center" Margin="0,0,10,0"/>
                     </Grid>
 
                     <Grid Grid.Column="1">
@@ -99,23 +106,25 @@
                     
                 </Grid>
 
-                <Grid Grid.Row="1">
-                    <ItemsControl ItemsSource="{Binding CurrentSearchResult}">
+                <Grid Grid.Row="2">
+                    <ItemsControl ItemsSource="{Binding CurrentSearchResult}" VerticalAlignment="Top">
                         <ItemsControl.ItemTemplate>
                             <DataTemplate>
-                                <Border BorderBrush="#130b61" BorderThickness="1" Height="120" Width="200" CornerRadius="5" Margin="0,0,0,5">
+                                <Border BorderBrush="#130b61" BorderThickness="1" Height="120" Width="200" CornerRadius="5" Margin="0,15,0,0">
                                     <StackPanel Orientation="Vertical">
                                         <TextBlock Text="{Binding CityName}" FontSize="20" 
                                    HorizontalAlignment="Center"/>
-                                        <TextBlock Text="{Binding Temperature}" FontSize="20" 
-                                   HorizontalAlignment="Center"/>
+                                        <TextBlock FontSize="20" HorizontalAlignment="Center">
+                                            <Run Text="{Binding Temperature}" />
+                                            <Run Text="°C" />
+                                        </TextBlock>
                                         <TextBlock Text="{Binding Condition}" FontSize="20" 
                                    HorizontalAlignment="Center"/>
 
-                                        <Button Content="+" BorderBrush="Transparent" Background="Transparent" FontSize="20" Width="30" Height="30" 
-                                HorizontalAlignment="Right" Margin="5"
-                                Command="{Binding DataContext.PinCityCommand, RelativeSource={RelativeSource AncestorType=Window}}"
-                                CommandParameter="{Binding}" />
+                                        <Button Content="+" BorderBrush="Transparent" Background="Transparent" Foreground="Black" FontSize="20" Width="40" Height="40" 
+                                            HorizontalAlignment="Right" ToolTip="Add city to pinned"
+                                            Command="{Binding DataContext.PinCityCommand, RelativeSource={RelativeSource AncestorType=Window}}"
+                                            CommandParameter="{Binding}" />
                                     </StackPanel>
                                 </Border>
                             </DataTemplate>

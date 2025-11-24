@@ -7,7 +7,7 @@ namespace WeatherApp.Services
     internal class WeatherService
     {
         private readonly HttpClient _httpClient = new HttpClient();
-        private readonly string _apiKey = "Enter_here_your_API_key";
+        private readonly string _apiKey = "Insert_Your_API_Key_Here";
 
         public async Task<CityWeather> GetWeatherAsync(string city)
         {

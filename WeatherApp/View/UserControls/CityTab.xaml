@@ -10,7 +10,10 @@
         <Grid>
             <StackPanel Orientation="Vertical">
                 <TextBlock Text="{Binding CityName}" FontSize="20" Background="Transparent" HorizontalAlignment="Center" VerticalAlignment="Center"/>
-                <TextBlock Text="{Binding Temperature}" FontSize="20" Background="Transparent" HorizontalAlignment="Center" VerticalAlignment="Center"/>
+                <TextBlock FontSize="20" Background="Transparent" HorizontalAlignment="Center" VerticalAlignment="Center">
+                    <Run Text="{Binding Temperature}" />
+                    <Run Text="°C" />
+                </TextBlock>
                 <TextBlock Text="{Binding Condition}" FontSize="20" Background="Transparent" HorizontalAlignment="Center" VerticalAlignment="Center"/>
 
                 <Button Command="{Binding DataContext.DeleteCityTabCommand, RelativeSource={RelativeSource AncestorType=Window}}" CommandParameter="{Binding}" 
